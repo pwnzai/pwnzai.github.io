@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Win98 RSVP</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <canvas id="fireworksCanvas" class="fireworks-canvas" aria-hidden="true"></canvas>
+    <main class="site" id="app">
+      <section class="view" id="contentView" aria-label="Content">
+        <div class="content-stack" role="region" aria-label="Content sections">
+          <header class="glitch-header" aria-label="Header">
+            <h1 class="glitch-text" data-text="PG 10v">PG 10v</h1>
+          </header>
+
+          <div class="window">
+            <div class="title-bar">
+              <div class="title-bar-text">Est. 2016</div>
+              <div class="title-bar-controls" aria-hidden="true">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+              </div>
+            </div>
+            <div class="window-body">
+              <p>
+                PG Täyttää 10 vuotta, ja Sinut, parahin PG:läinen, on kutsuttu juhlimaan
+                03.-05.07.2026 Oulussa kymmenenvuotista taivalta yhdessä muiden
+                PG:läisten kanssa. Lisää infoa tapahtumasta tulee tänne verkkosivulle.
+              </p>
+              <p>
+                Tapahtumalla on kohtuullinen budjetti ja työryhmä pidättää oikeuden periä
+                pienen osallistumismaksun juhlijoilta.
+              </p>
+              <div class="field-row buttons">
+                <button type="button" id="logoutButton">Log out</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="window">
+            <div class="title-bar">
+              <div class="title-bar-text">Sitova ilmoittautuminen</div>
+              <div class="title-bar-controls" aria-hidden="true">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+              </div>
+            </div>
+            <div class="window-body">
+              <form id="rsvpForm" novalidate>
+                <fieldset>
+                  <legend>Nimi</legend>
+                  <div class="field-row-stacked">
+                    <label for="firstName">Etunimi</label>
+                    <input id="firstName" name="firstName" type="text" required />
+                  </div>
+                  <div class="field-row-stacked">
+                    <label for="lastName">Sukunimi</label>
+                    <input id="lastName" name="lastName" type="text" required />
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Oletko tulossa?</legend>
+                  <div class="field-row">
+                    <input
+                      id="rsvpYes"
+                      type="radio"
+                      name="rsvp"
+                      value="Yes"
+                      required
+                    />
+                    <label for="rsvpYes">Kyllä</label>
+                  </div>
+                  <div class="field-row">
+                    <input id="rsvpNo" type="radio" name="rsvp" value="No" required />
+                    <label for="rsvpNo">Ei</label>
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Avec</legend>
+                  <div class="field-row">
+                    <input
+                      id="avecYes"
+                      type="radio"
+                      name="avec"
+                      value="Yes"
+                      required
+                    />
+                    <label for="avecYes">Kyllä</label>
+                  </div>
+                  <div class="field-row">
+                    <input
+                      id="avecNo"
+                      type="radio"
+                      name="avec"
+                      value="No"
+                      required
+                    />
+                    <label for="avecNo">Ei</label>
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Haluan PG-muistoesineen (hinta max 50€)</legend>
+                  <div class="field-row">
+                    <input
+                      id="souvenirYes"
+                      type="radio"
+                      name="souvenir"
+                      value="Yes"
+                      required
+                    />
+                    <label for="souvenirYes">Kyllä</label>
+                  </div>
+                  <div class="field-row">
+                    <input
+                      id="souvenirNo"
+                      type="radio"
+                      name="souvenir"
+                      value="No"
+                      required
+                    />
+                    <label for="souvenirNo">Ei</label>
+                  </div>
+                </fieldset>
+
+                <div class="field-row-stacked">
+                  <label for="allergies">Allergiat &amp; ruokarajoitteet (jos on)</label>
+                  <input id="allergies" name="allergies" type="text" />
+                </div>
+
+                <div class="field-row buttons">
+                  <button type="submit" id="rsvpSubmit">Lähetä</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="assets/app.js" defer></script>
+    <script src="assets/fireworks.js" defer></script>
+  </body>
+</html>

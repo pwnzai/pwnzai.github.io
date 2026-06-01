@@ -1,0 +1,275 @@
+:root {
+  --page-padding: 14px;
+  --content-max: 720px;
+  --text-scale: 1.5;
+  --glitch-red: #ff4757;
+  --glitch-cyan: #00d9ff;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-size: calc(11px * var(--text-scale));
+  line-height: 1.35;
+  background: #008080;
+  position: relative;
+}
+
+/* CRT scan lines overlay (site-wide) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.25) 2px,
+    rgba(0, 0, 0, 0.25) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+  animation: crt-scanline-flicker 0.08s steps(2) infinite;
+}
+
+@keyframes crt-scanline-flicker {
+  0%,
+  100% {
+    opacity: 0.343;
+  }
+  50% {
+    opacity: 0.3157;
+  }
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: inherit;
+}
+
+.window,
+.window-body,
+.title-bar,
+.title-bar-text,
+.status-bar,
+.field-row,
+label,
+legend {
+  font-size: 1em;
+}
+
+.site {
+  min-height: 100%;
+  padding: var(--page-padding);
+  position: relative;
+  z-index: 1;
+}
+
+.view {
+  width: 100%;
+}
+
+.fireworks-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.fireworks-canvas.is-paused {
+  display: none;
+}
+
+.center {
+  min-height: calc(100vh - (2 * var(--page-padding)));
+  display: grid;
+  place-items: center;
+}
+
+.login-window {
+  width: min(520px, 100%);
+}
+
+.content-stack {
+  width: min(var(--content-max), 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+}
+
+.buttons {
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.lede {
+  margin-top: 0;
+}
+
+.hint {
+  margin-bottom: 0;
+  font-size: 0.8em;
+}
+
+.glitch-header {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 10px 12px;
+  color: #fff;
+  font-family: "Sixtyfour Convergence", ui-monospace, "Courier New", Courier, monospace;
+  font-weight: 700;
+  font-size: clamp(26px, 6.5vw, 56px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  text-shadow: 1px 1px 0 #000;
+  user-select: none;
+  will-change: transform, text-shadow;
+  animation: text-glitch 3.2s steps(1, end) infinite;
+}
+
+@keyframes text-glitch {
+  0%,
+  28%,
+  64%,
+  100% {
+    transform: translateX(0);
+    text-shadow: 1px 1px 0 #000;
+  }
+  30% {
+    transform: translateX(-2px);
+    text-shadow: 1px 1px 0 #000, 2px 0 var(--glitch-cyan), -2px 0 var(--glitch-red);
+  }
+  31% {
+    transform: translateX(2px);
+    text-shadow: 1px 1px 0 #000, -2px 0 var(--glitch-cyan), 2px 0 var(--glitch-red);
+  }
+  32% {
+    transform: translateX(-1px);
+    text-shadow: 1px 1px 0 #000, 1px 0 var(--glitch-cyan), -1px 0 var(--glitch-red);
+  }
+  33% {
+    transform: translateX(1px);
+    text-shadow: 1px 1px 0 #000;
+  }
+  66% {
+    transform: translateX(-2px);
+    text-shadow: 1px 1px 0 #000, 2px 0 var(--glitch-cyan), -2px 0 var(--glitch-red);
+  }
+  67% {
+    transform: translateX(2px);
+    text-shadow: 1px 1px 0 #000, -2px 0 var(--glitch-cyan), 2px 0 var(--glitch-red);
+  }
+  68% {
+    transform: translateX(-1px);
+    text-shadow: 1px 1px 0 #000, 1px 0 var(--glitch-cyan), -1px 0 var(--glitch-red);
+  }
+  69% {
+    transform: translateX(1px);
+    text-shadow: 1px 1px 0 #000;
+  }
+
+  /* Tiny random-feeling nudge near the end */
+  92%,
+  100% {
+    transform: translateX(0);
+    text-shadow: 1px 1px 0 #000;
+  }
+  93% {
+    transform: translateX(-2px);
+    text-shadow: 1px 1px 0 #000, 2px 0 var(--glitch-cyan), -2px 0 var(--glitch-red);
+  }
+  94% {
+    transform: translateX(2px);
+    text-shadow: 1px 1px 0 #000, -2px 0 var(--glitch-cyan), 2px 0 var(--glitch-red);
+  }
+  95% {
+    transform: translateX(-1px);
+    text-shadow: 1px 1px 0 #000, 1px 0 var(--glitch-cyan), -1px 0 var(--glitch-red);
+  }
+  96% {
+    transform: translateX(1px);
+    text-shadow: 1px 1px 0 #000;
+  }
+}
+
+dialog#deniedDialog {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+dialog#deniedDialog::backdrop {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.denied-window {
+  position: relative;
+}
+
+.denied-window::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.25) 2px,
+    rgba(0, 0, 0, 0.25) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+  animation: crt-scanline-flicker 0.08s steps(2) infinite;
+}
+
+.denied-window {
+  width: min(360px, calc(100vw - 2 * var(--page-padding)));
+}
+
+@media (max-width: 420px) {
+  :root {
+    --page-padding: 10px;
+  }
+
+  .content-stack {
+    gap: 10px;
+  }
+
+  .buttons {
+    justify-content: stretch;
+  }
+
+  .buttons > button {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fireworks-canvas {
+    display: none;
+  }
+
+  .glitch-text {
+    animation: none;
+  }
+
+  body::before {
+    animation: none;
+  }
+}
